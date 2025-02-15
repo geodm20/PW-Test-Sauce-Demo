@@ -4,7 +4,11 @@ export const users = {
     "problem": "problem_user",
     "performance":"performance_glitch_user",
     "error": "error_user",
-    "visual": "visual_user"
+    "visual": "visual_user",
+    "invalid": "invalid_user"
 }
 
-export const password = "secret_sauce"
+export const password = {
+    "correct": "secret_sauce",
+    "incorrect": "incorrect_password"
+}

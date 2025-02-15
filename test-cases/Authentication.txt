@@ -1,0 +1,29 @@
+AUTHENTICATION (LOGIN AND LOGOUT):
+
+TC01: Login with valid credentials and logout successfully
+Steps:
+1. Go to the login page in https://www.saucedemo.com/.
+2. Enter user standard_user and password secret_sauce.
+3. Click Login.
+4. Open the side menu.
+5. Click on Logout.	
+Expected result: The user accesses the product page. Then the user is returned to the login screen.
+
+TC02: Login with locked user
+Steps:
+1. Enter user locked_out_user and password secret_sauce.
+2. Click on Login.
+Expected result: The message “Epic sadface: Sorry, this user has been blocked” appears.
+
+TC03: Login with invalid user
+Steps:
+1. Enter unregistered user.
+2. Enter any password.
+3. Click on Login.
+Expected result: Error message appears.
+
+TC04: Login without entering credentials
+Steps:
+1. Leave the fields empty.
+2. Click on Login.
+Expected result: Error message appears.

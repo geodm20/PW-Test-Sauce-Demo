@@ -6,6 +6,8 @@ export class LoginPage {
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
     readonly errorMessage: Locator;
+    readonly menuButton: Locator;
+    readonly logoutButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -13,6 +15,8 @@ export class LoginPage {
         this.passwordInput = page.getByRole("textbox", { name: "Password"});
         this.loginButton = page.getByRole("button", { name: "Login"});
         this.errorMessage = page.locator("[data-test=error]");
+        this.menuButton = page.locator("#react-burger-menu-btn");
+        this.logoutButton = page.getByRole("link", { name: "Logout"});
     }
 
     async login(username: string, password: string) {
@@ -22,7 +26,8 @@ export class LoginPage {
     }
 
     async logout() {
-
+        await this.menuButton.click();
+        await this.logoutButton.click();
     }
 
 }
