@@ -12,3 +12,9 @@ export const password = {
     "correct": "secret_sauce",
     "incorrect": "incorrect_password"
 }
+
+export interface Product {
+    name: string | null;
+    image: string | null;
+    price: string | null;
+}
