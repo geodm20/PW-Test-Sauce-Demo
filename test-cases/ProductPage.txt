@@ -1,0 +1,27 @@
+PRODUCT PAGE:
+
+TC05: View all available products
+1. Log in to navigate to the product listing page.
+2. Verify that all products are displayed with their name, image, and price.
+Expected result: All products are visible with name, image, and price.
+
+TC06: Filter products by ascending price
+Steps:
+1. Log in with valid credentials.
+2. Select the “Price (low to high)” filter from the dropdown.
+3. Verify that the products are displayed in ascending order of price.
+Expected result: The products are sorted from the cheapest to the most expensive.
+
+TC07: Filter products by descending price
+Steps:
+1 Log in with valid credentials.
+2. Select the “Price (high to low)” filter from the dropdown.
+3. Verify that the products are displayed in descending order of price.
+Expected result: The products are sorted from the most expensive to the cheapest.
+
+TC08: View product details
+Steps:
+1. Log in with valid credentials.
+2. Click on a product from the listing page.
+3. Verify that the product details page displays the correct name, image, and price.
+Expected result: The product detail page shows the correct product name, image, description, and price.
