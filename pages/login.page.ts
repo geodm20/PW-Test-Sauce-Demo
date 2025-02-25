@@ -30,4 +30,8 @@ export class LoginPage {
         await this.logoutButton.click();
     }
 
+    async getErrorMessage() {
+        return this.errorMessage;
+    }
+
 }

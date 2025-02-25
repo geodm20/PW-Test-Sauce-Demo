@@ -24,7 +24,6 @@ export class ProductPage {
         return products;
     }
     
-
     async verifyProductListCount() {
         return this.productList.count();
     }
