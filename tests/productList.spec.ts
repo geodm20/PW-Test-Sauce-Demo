@@ -7,7 +7,7 @@ test.beforeEach(async ({page}) => {
     await page.goto('/');
     const loginPage = new LoginPage(page);
     await loginPage.login(users.standard, password.correct);
-    expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 });
 
 // TC05: View all available products
@@ -18,7 +18,7 @@ test("View all available products", async ({page}) => {
 
     const products = await productPage.verifyProductList();
     products.forEach(product => {
-        expect(product.name).toBeDefined();
+        expect(product.name).toBeTruthy();
         expect(product.image).toMatch(/.*\.jpg/);
         expect(product.price).toMatch(/\$\d+\.\d+/);
     });
