@@ -10,6 +10,10 @@ export class ProductPage {
         this.productList = page.locator('[data-test="inventory-item"]');
     }
 
+    async verifyProductListCount() {
+        return this.productList.count();
+    }
+
     async verifyProductList() {
         const products: Product[] = [];
         const productElements = await this.productList.all(); // get an iterable array from the product list locator
@@ -23,9 +27,20 @@ export class ProductPage {
 
         return products;
     }
-    
-    async verifyProductListCount() {
-        return this.productList.count();
+
+    async validateProductDetails(products: Product[]) {
+        let isValid = true;
+        
+        for (const product of products) {
+            if (!product.name || 
+                !product.image?.match(/.*\.jpg/) || 
+                !product.price?.match(/\$\d+\.\d+/)) {
+                isValid = false;
+                break;
+            }
+        }
+        
+        return isValid;
     }
 
 }

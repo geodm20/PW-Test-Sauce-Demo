@@ -17,9 +17,6 @@ test("View all available products", async ({page}) => {
     expect(productsCount).toEqual(6);
 
     const products = await productPage.verifyProductList();
-    products.forEach(product => {
-        expect(product.name).toBeTruthy();
-        expect(product.image).toMatch(/.*\.jpg/);
-        expect(product.price).toMatch(/\$\d+\.\d+/);
-    });
+    const areProductDetailsValid = await productPage.validateProductDetails(products);
+    expect(areProductDetailsValid).toBeTruthy();
 });
