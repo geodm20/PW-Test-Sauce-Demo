@@ -4,11 +4,15 @@ import { Product } from "../utils/config";
 export class ProductPage {
     readonly page: Page;
     readonly productList: Locator;
+    readonly filterButton: Locator;
 
     constructor (page: Page) {
         this.page = page;
         this.productList = page.locator('[data-test="inventory-item"]');
+        this.filterButton = page.locator('[data-test="product-sort-container"]');
     }
+
+    // TC05 methods
 
     async verifyProductListCount() {
         return this.productList.count();
@@ -41,6 +45,29 @@ export class ProductPage {
         }
         
         return isValid;
+    }
+
+    // TC06 methods
+
+    async orderProductsFromLowToHigh(value: string) {
+        await this.filterButton.selectOption(value);
+    }
+
+    async arePricesInAscendingOrder() {
+        const products = await this.verifyProductList();
+        let previousPrice = 0;
+        let isAscending = true;
+
+        for (const product of products) {
+            const currentPrice = parseInt(product.price?.replace("$", "") ?? "0");
+            if (currentPrice < previousPrice) {
+                isAscending = false;
+                break
+            }
+            previousPrice = currentPrice;
+        }
+
+        return isAscending;
     }
 
 }

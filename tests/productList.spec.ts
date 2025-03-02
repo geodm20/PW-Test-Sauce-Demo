@@ -20,3 +20,11 @@ test("View all available products", async ({page}) => {
     const areProductDetailsValid = await productPage.validateProductDetails(products);
     expect(areProductDetailsValid).toBeTruthy();
 });
+
+// TC06: Filter products by ascending price
+test("Filter products by ascending price", async ({page}) => {
+    const productPage = new ProductPage(page);
+    await productPage.orderProductsFromLowToHigh("lohi");
+    const areAscending = await productPage.arePricesInAscendingOrder();
+    expect(areAscending).toBe(true);
+});
