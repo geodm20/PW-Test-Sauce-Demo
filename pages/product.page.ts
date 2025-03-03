@@ -5,6 +5,7 @@ export class ProductPage {
     readonly page: Page;
     readonly productList: Locator;
     readonly filterButton: Locator;
+    private sortValue: string = "";
 
     constructor (page: Page) {
         this.page = page;
@@ -51,23 +52,29 @@ export class ProductPage {
 
     async orderProducts(value: string) {
         await this.filterButton.selectOption(value);
+        this.sortValue = value;
     }
 
-    async arePricesInAscendingOrder() {
+    async arePricesInCorrectOrder() {
         const products = await this.verifyProductList();
-        let previousPrice = 0;
-        let isAscending = true;
+        if (products.length <= 1) return true;
+        let isCorrectOrder = true;
+        let previousPrice = parseFloat(products[0].price?.replace("$", "") ?? "0");
+        const remainingProducts = products.slice(1);
 
-        for (const product of products) {
-            const currentPrice = parseInt(product.price?.replace("$", "") ?? "0");
-            if (currentPrice < previousPrice) {
-                isAscending = false;
-                break
+        for (const product of remainingProducts) {
+            const currentPrice = parseFloat(product.price?.replace("$", "") ?? "0");
+            
+            if ((this.sortValue === "lohi" && currentPrice < previousPrice) || 
+                (this.sortValue === "hilo" && currentPrice > previousPrice)) {
+                isCorrectOrder = false;
+                break;
             }
+            
             previousPrice = currentPrice;
         }
 
-        return isAscending;
+        return isCorrectOrder;
     }
 
 }

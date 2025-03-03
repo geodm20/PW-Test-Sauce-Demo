@@ -25,7 +25,7 @@ test("View all available products", async ({page}) => {
 test("Filter products by ascending price", async ({page}) => {
     const productPage = new ProductPage(page);
     await productPage.orderProducts("lohi");
-    const areAscending = await productPage.arePricesInAscendingOrder();
+    const areAscending = await productPage.arePricesInCorrectOrder();
     expect(areAscending).toBe(true);
 });
 
@@ -33,6 +33,6 @@ test("Filter products by ascending price", async ({page}) => {
 test("Filter products by descending price", async ({page}) => {
     const productPage = new ProductPage(page);
     await productPage.orderProducts("hilo");
-    const areAscending = await productPage.arePricesInAscendingOrder();
-    expect(areAscending).toBe(false);
+    const areDescending = await productPage.arePricesInCorrectOrder();
+    expect(areDescending).toBe(true);
 });
