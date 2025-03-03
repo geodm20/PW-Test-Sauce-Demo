@@ -47,9 +47,9 @@ export class ProductPage {
         return isValid;
     }
 
-    // TC06 methods
+    // TC06 - TC07 methods
 
-    async orderProductsFromLowToHigh(value: string) {
+    async orderProducts(value: string) {
         await this.filterButton.selectOption(value);
     }
 

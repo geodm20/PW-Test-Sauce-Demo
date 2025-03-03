@@ -24,7 +24,15 @@ test("View all available products", async ({page}) => {
 // TC06: Filter products by ascending price
 test("Filter products by ascending price", async ({page}) => {
     const productPage = new ProductPage(page);
-    await productPage.orderProductsFromLowToHigh("lohi");
+    await productPage.orderProducts("lohi");
     const areAscending = await productPage.arePricesInAscendingOrder();
     expect(areAscending).toBe(true);
+});
+
+// TC07: Filter products by descending price
+test("Filter products by descending price", async ({page}) => {
+    const productPage = new ProductPage(page);
+    await productPage.orderProducts("hilo");
+    const areAscending = await productPage.arePricesInAscendingOrder();
+    expect(areAscending).toBe(false);
 });
