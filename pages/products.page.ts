@@ -1,7 +1,7 @@
 import { Page, Locator } from "@playwright/test";
 import { Product } from "../utils/config";
 
-export class ProductPage {
+export class ProductsPage {
     readonly page: Page;
     readonly productList: Locator;
     readonly filterButton: Locator;
@@ -21,9 +21,9 @@ export class ProductPage {
 
     async verifyProductList() {
         const products: Product[] = [];
-        const productElements = await this.productList.all(); // get an iterable array from the product list locator
+        const productList = await this.productList.all(); // get an iterable array from the product list locator
 
-        for (const product of productElements) {
+        for (const product of productList) {
             const name = await product.locator("[data-test='inventory-item-name']").textContent();
             const image = await product.locator("[data-test$='-img']").getAttribute('src');
             const price = await product.locator("[data-test='inventory-item-price']").textContent();
@@ -75,6 +75,40 @@ export class ProductPage {
         }
 
         return isCorrectOrder;
+    }
+
+    // TC08 methods
+
+    async clickOnRandomProduct() {
+        const products = await this.productList.all();
+        const productsCount = products.length;
+
+        if (productsCount) 
+        {
+            // Choose random item with locators in a list
+            const randomIndex = Math.floor(Math.random() * productsCount);
+            const randomProduct = products[randomIndex];
+
+            // Extract information from the selected item
+            const randomProductDetails = {
+                name: await randomProduct.locator("[data-test='inventory-item-name']").textContent(),
+                image: await randomProduct.locator("[data-test$='-img']").getAttribute('src'),
+                price: await randomProduct.locator("[data-test='inventory-item-price']").textContent()
+            }
+            
+            await randomProduct.locator("a div").click();
+
+            // Get info from the clicked random product
+            const clickedRandomProductDetails = {
+                name: await this.page.locator("[data-test='inventory-item-name']").textContent(),
+                image: await this.page.locator("[data-test$='-img']").getAttribute('src'),
+                price: await this.page.locator("[data-test='inventory-item-price']").textContent()
+            }
+
+            return {randomProductDetails, clickedRandomProductDetails};
+        } 
+        
+        else return { randomProductDetails: null, clickedRandomProductDetails: null }
     }
 
 }
