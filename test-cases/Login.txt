@@ -1,4 +1,4 @@
-AUTHENTICATION (LOGIN AND LOGOUT):
+LOGIN AND LOGOUT:
 
 TC01: Login with valid credentials and logout successfully
 Steps:

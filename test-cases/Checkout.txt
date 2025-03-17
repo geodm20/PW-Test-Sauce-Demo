@@ -1,0 +1,22 @@
+CHECKOUT:
+
+TC11: Submit empty fields on checkout form 
+Steps:
+1. Log in with valid credentials.
+2. In the product page, click "Add to cart" on a random number of available products.
+3. Click on the cart icon.
+4. Click on the "Checkout" button.
+5. With empty form fields, click on the "Continue" button.
+Expected result: An error will show up to state empty fields.
+
+TC12: Complete checkout
+Steps:
+1. Log in with valid credentials.
+2. In the product page, click "Add to cart" on a random number of available products.
+3. Click on the cart icon.
+4. Click on the "Checkout" button.
+5. Fill the form fields and click on the "Continue" button.
+6. Verify the price total click on the "Finish" button.
+7. Verify the order status and click on the "Back Home" button.
+Expected result: Order is completed for selected products. Final price matches the sum of all listed products.
+

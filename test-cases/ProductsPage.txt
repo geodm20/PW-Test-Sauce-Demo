@@ -1,6 +1,7 @@
-PRODUCT PAGE:
+PRODUCTS PAGE:
 
 TC05: View all available products
+Steps:
 1. Log in to navigate to the product listing page.
 2. Verify that all products are displayed with their name, image, and price.
 Expected result: All products are visible with name, image, and price.

@@ -1,0 +1,18 @@
+SHOPPING CART:
+
+TC09: Verify added products on cart
+Steps:
+1. Log in with valid credentials.
+2. In the product page, click "Add to cart" on a random number of available products.
+3. Click on the cart icon.
+4. Verify the number of products on the cart page and the cart icon number.
+Expected result: The number of detailed products matches the added products on cart.
+
+TC10: Remove products from cart
+Steps:
+1. Log in with valid credentials.
+2. In the product page, click "Add to cart" on a random number of available products.
+3. Click on the cart icon.
+4. Click on the "Remove" button of all listed products.
+5. Verify the cart page status and cart icon number.
+Expected result: No products are listed in the cart page and the number on cart icon dissapears.
