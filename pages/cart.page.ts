@@ -2,17 +2,18 @@ import { type Page, type Locator } from '@playwright/test';
 
 export class Cart {
     readonly page: Page;
-    readonly addToCart: Locator;
-    readonly cartCounter: Locator;
+    readonly productContainer: Locator;
+    readonly cartIcon: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.addToCart = page.locator("[data-test='inventory-item']");
-        this.cartCounter = page.locator('.shopping_cart_badge');
+        this.productContainer = page.locator("[data-test='inventory-item']");
+        this.cartIcon = page.locator("[data-test='shopping-cart-link']");
+
     }
 
     async addRandomProductsToCart() {
-        let products = await this.addToCart.all();
+        let products = await this.productContainer.all();
         const productsCount = products.length;
         let addedProducts = 0;
 
@@ -32,9 +33,31 @@ export class Cart {
     }
 
     async getCartCount() {
-        const badgeText = await this.cartCounter.textContent();
+        const badgeText = await this.cartIcon.textContent();
         if (badgeText) return parseInt(badgeText);
         return 0;
+    }
+
+    async goToCart() {
+        await this.cartIcon.click();
+    }
+
+    async removeProductsFromCart() {
+        let removeButtons = await this.productContainer.all();
+
+        while (removeButtons.length > 0) {
+            // Always click first element since they're dynamic
+            await removeButtons[0].getByRole("button", {name: "Remove"}).click();
+            // Update the iterable variable on every iteration to prevent waits for unexisting locators
+            removeButtons = await this.productContainer.all();
+        }
+    }
+
+    async verifyProductsAreRemoved() {
+        const products = await this.productContainer.all();
+        const productsCount = products.length;
+        if (!productsCount) return true;
+        return false;
     }
 
 }
