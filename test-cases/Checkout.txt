@@ -16,7 +16,7 @@ Steps:
 3. Click on the cart icon.
 4. Click on the "Checkout" button.
 5. Fill the form fields and click on the "Continue" button.
-6. Verify the price total click on the "Finish" button.
+6. Verify the price total and click on the "Finish" button.
 7. Verify the order status and click on the "Back Home" button.
 Expected result: Order is completed for selected products. Final price matches the sum of all listed products.
 
